@@ -1,2 +1,0 @@
-# bamu
-web lab
