@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AJAX Search Suggestion</title>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<style>
-#suggestions{
-    border:1px solid #ccc;
-    width:200px;
-    display:none;
-    background:white;
-}
-
-.suggestion-item{
-    padding:5px;
-    cursor:pointer;
-}
-
-.suggestion-item:hover{
-    background:#f0f0f0;
-}
-</style>
-
+<title>Registration Form</title>
 </head>
-
 <body>
 
-<h2>Search Suggestion Example</h2>
+<h2>Registration Form</h2>
 
-<input type="text" id="search" placeholder="Type to search">
+<form action="register.php" method="post">
+    
+    Name:<br>
+    <input type="text" name="name" required>
+    <br><br>
 
-<div id="suggestions"></div>
+    Email:<br>
+    <input type="email" name="email" required>
+    <br><br>
 
-<script src="script.js"></script>
+    Password:<br>
+    <input type="password" name="password" required>
+    <br><br>
+
+    Gender:<br>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <br><br>
+
+    Course:<br>
+    <select name="course">
+        <option value="BCA">BCA</option>
+        <option value="BBA">BBA</option>
+        <option value="BTech">BTech</option>
+    </select>
+    <br><br>
+
+    <input type="submit" value="Register">
+
+</form>
 
 </body>
 </html>
