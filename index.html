@@ -1,29 +1,87 @@
 <?php
 session_start();
 
-$user="admin";
-$pass="12345";
+/* LOGIN */
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
 
-if(isset($_POST['login']))
-{
-$uid=$_POST['userid'];
-$pwd=$_POST['password'];
+    // create session
+    $_SESSION['username'] = $username;
 
-if($uid==$user && $pwd==$pass)
-{
-$_SESSION['user']=$uid;
-echo "Login Successful<br>";
-echo "<a href='logout.php'>Logout</a>";
+    // create cookie (1 hour)
+    setcookie("username",$username,time()+3600);
 }
-else
-{
-echo "Invalid Login";
-}
+
+/* LOGOUT */
+if(isset($_POST['logout'])){
+    session_destroy();
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Session and Cookie Example</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+margin-top:100px;
+}
+
+input{
+padding:10px;
+margin:5px;
+}
+
+button{
+padding:10px 20px;
+background:#4CAF50;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.logout{
+background:red;
+}
+</style>
+</head>
+<body>
+
+<h2>PHP Session & Cookie Demo</h2>
+
+<?php
+
+if(isset($_SESSION['username'])){
+
+echo "<h3>Welcome, ".$_SESSION['username']."</h3>";
+
+if(isset($_COOKIE['username'])){
+echo "Cookie Username: ".$_COOKIE['username']."<br><br>";
+}
+
+echo '
 <form method="post">
-User ID: <input type="text" name="userid"><br><br>
-Password: <input type="password" name="password"><br><br>
-<input type="submit" name="login" value="Login">
+<button class="logout" name="logout">Logout</button>
 </form>
+';
+
+}else{
+
+echo '
+<form method="post">
+<input type="text" name="username" placeholder="Enter Username" required>
+<br>
+<button type="submit" name="login">Login</button>
+</form>
+';
+
+}
+
+?>
+
+</body>
+</html>
