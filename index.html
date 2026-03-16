@@ -20,60 +20,24 @@ if(isset($_POST['logout'])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>Session Example</title>
-<style>
-body{
-font-family: Arial;
-text-align:center;
-margin-top:100px;
-}
-
-input{
-padding:10px;
-margin:5px;
-}
-
-button{
-padding:10px 20px;
-background:#4CAF50;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-.logout{
-background:red;
-}
-</style>
+<title>PHP Session Login</title>
 </head>
 <body>
 
-<h2>PHP Session Demo</h2>
+<h2>PHP Session Login Demo</h2>
 
 <?php
-
 if(isset($_SESSION['username'])){
-
-echo "<h3>Welcome, ".$_SESSION['username']."</h3>";
-
-echo '
-<form method="post">
-<button class="logout" name="logout">Logout</button>
-</form>
-';
-
+    echo "<h3>Welcome, ".$_SESSION['username']."</h3>";
+    echo '<form method="post">
+            <button name="logout">Logout</button>
+          </form>';
 }else{
-
-echo '
-<form method="post">
-<input type="text" name="username" placeholder="Enter Username" required>
-<br>
-<button type="submit" name="login">Login</button>
-</form>
-';
-
+    echo '<form method="post">
+            <input type="text" name="username" placeholder="Enter Username" required><br><br>
+            <button type="submit" name="login">Login</button>
+          </form>';
 }
-
 ?>
 
 </body>
